@@ -1,722 +1,720 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
+    <title>太极八卦图</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
+        
         body {
-            background-color: var(--light);
-            color: var(--text);
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #f8f8f8;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00c8ff, transparent);
+            bottom: -5px;
+            left: 0;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            max-width: 800px;
+            margin: 0 auto;
             line-height: 1.6;
         }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
+        
         .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
             display: flex;
-            justify-content: space-between;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        
+        .taiji-area {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
             align-items: center;
         }
-
-        .logo {
+        
+        .taiji-container {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .taiji {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            position: relative;
+            background: linear-gradient(to right, #ffffff 0%, #ffffff 50%, #000000 50%, #000000 100%);
+            animation: rotate 20s linear infinite;
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .taiji:hover {
+            animation-play-state: paused;
+            transform: scale(1.02);
+        }
+        
+        .taiji:before, .taiji:after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            border: 35px solid;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .taiji:before {
+            background: #000;
+            border-color: #000;
+            left: 25%;
+        }
+        
+        .taiji:after {
+            background: #fff;
+            border-color: #fff;
+            right: 25%;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            background: rgba(0, 40, 85, 0.7);
+            color: #e6e6e6;
+            border: 1px solid #00c8ff;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .btn:hover {
+            background: rgba(0, 100, 200, 0.8);
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
+        }
+        
+        .bagua-area {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+        
+        .bagua-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+        }
+        
+        .bagua-circle {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px dashed rgba(0, 200, 255, 0.5);
+        }
+        
+        .trigram {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 20, 40, 0.8);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            color: #f8f8f8;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 200, 255, 0.5);
+            z-index: 2;
+        }
+        
+        .trigram:hover {
+            transform: scale(1.1);
+            background: rgba(0, 100, 200, 0.9);
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.7);
+            z-index: 10;
+        }
+        
+        .trigram-name {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .trigram-lines {
+            font-size: 1.5rem;
+            letter-spacing: -5px;
+        }
+        
+        .info-panel {
+            background: rgba(10, 25, 47, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 1000px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s;
+        }
+        
+        .info-title {
+            color: #00c8ff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
         }
-
-        .logo i {
-            font-size: 2rem;
+        
+        .info-content {
+            line-height: 1.7;
+            font-size: 1.1rem;
         }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
+        
+        .bagua-table {
             width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
         }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
+        
+        .bagua-table th {
+            background: rgba(0, 100, 200, 0.3);
+            padding: 12px;
+            text-align: left;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+        }
+        
+        .bagua-table td {
+            padding: 12px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+        }
+        
+        .bagua-table tr:nth-child(even) {
+            background: rgba(0, 40, 85, 0.2);
+        }
+        
+        .bagua-table tr:hover {
+            background: rgba(0, 100, 200, 0.2);
+        }
+        
+        .footer {
+            margin-top: 40px;
             text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
+            color: #888;
+            font-size: 0.9rem;
+            padding: 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 1000px;
         }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
+        
+        .symbol {
+            color: #00c8ff;
+            font-weight: bold;
         }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
+        
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
+            .container {
                 flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                align-items: center;
             }
             
-            nav ul.active {
-                display: flex;
+            h1 {
+                font-size: 2.2rem;
             }
             
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
+            .taiji-container {
+                width: 250px;
+                height: 250px;
             }
             
-            .mobile-menu {
-                display: block;
+            .bagua-container {
+                height: 350px;
             }
             
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
+            .bagua-circle {
+                width: 300px;
+                height: 300px;
             }
         }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        
+        /* 八卦位置计算 */
+        .trigram-1 { top: 0%; left: 50%; transform: translate(-50%, -50%); }
+        .trigram-2 { top: 15%; left: 85%; transform: translate(-50%, -50%); }
+        .trigram-3 { top: 50%; left: 100%; transform: translate(-50%, -50%); }
+        .trigram-4 { top: 85%; left: 85%; transform: translate(-50%, -50%); }
+        .trigram-5 { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+        .trigram-6 { top: 85%; left: 15%; transform: translate(-50%, -50%); }
+        .trigram-7 { top: 50%; left: 0%; transform: translate(-50%, -50%); }
+        .trigram-8 { top: 15%; left: 15%; transform: translate(-50%, -50%); }
+        
+        .active {
+            background: rgba(0, 150, 255, 0.9) !important;
+            box-shadow: 0 0 25px rgba(0, 200, 255, 0.9) !important;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
+    <div class="header">
+        <h1><i class="fas fa-yin-yang"></i> 太极八卦图</h1>
+        <p class="subtitle">太极生两仪，两仪生四象，四象生八卦。八卦代表天地间八种基本元素与现象，是中华文化的重要哲学概念。</p>
+    </div>
+    
+    <div class="container">
+        <div class="taiji-area">
+            <div class="taiji-container">
+                <div class="taiji" id="taiji"></div>
+                <div class="bagua-circle"></div>
+                
+                <!-- 八卦符号 -->
+                <div class="trigram trigram-1" data-trigram="乾">
+                    <div class="trigram-lines">☰</div>
+                    <div class="trigram-name">乾 Qián</div>
                 </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
+                <div class="trigram trigram-2" data-trigram="兑">
+                    <div class="trigram-lines">☱</div>
+                    <div class="trigram-name">兑 Duì</div>
                 </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
+                <div class="trigram trigram-3" data-trigram="离">
+                    <div class="trigram-lines">☲</div>
+                    <div class="trigram-name">离 Lí</div>
+                </div>
+                <div class="trigram trigram-4" data-trigram="震">
+                    <div class="trigram-lines">☳</div>
+                    <div class="trigram-name">震 Zhèn</div>
+                </div>
+                <div class="trigram trigram-5" data-trigram="巽">
+                    <div class="trigram-lines">☴</div>
+                    <div class="trigram-name">巽 Xùn</div>
+                </div>
+                <div class="trigram trigram-6" data-trigram="坎">
+                    <div class="trigram-lines">☵</div>
+                    <div class="trigram-name">坎 Kǎn</div>
+                </div>
+                <div class="trigram trigram-7" data-trigram="艮">
+                    <div class="trigram-lines">☶</div>
+                    <div class="trigram-name">艮 Gèn</div>
+                </div>
+                <div class="trigram trigram-8" data-trigram="坤">
+                    <div class="trigram-lines">☷</div>
+                    <div class="trigram-name">坤 Kūn</div>
                 </div>
             </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
+            
+            <div class="controls">
+                <button class="btn" id="pauseBtn">
+                    <i class="fas fa-pause"></i> 暂停旋转
+                </button>
+                <button class="btn" id="resetBtn">
+                    <i class="fas fa-redo"></i> 重置
+                </button>
+                <button class="btn" id="randomBtn">
+                    <i class="fas fa-random"></i> 随机卦象
+                </button>
             </div>
         </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
+        
+        <div class="bagua-area">
+            <div class="info-panel" id="infoPanel">
+                <h2 class="info-title"><i class="fas fa-info-circle"></i> 太极八卦简介</h2>
+                <div class="info-content">
+                    <p>太极八卦图是中国古代哲学的重要象征，体现了阴阳相生、万物变化的宇宙观。</p>
+                    <p><span class="symbol">太极</span>代表宇宙的原始状态，阴阳相互依存、相互转化。<span class="symbol">八卦</span>由阴阳两种符号组成，每卦三爻，共八种组合，代表天地间八种基本元素与现象。</p>
+                    <p>点击周围的卦象可以查看详细信息。</p>
+                    
+                    <table class="bagua-table">
+                        <thead>
+                            <tr>
+                                <th>卦名</th>
+                                <th>自然象征</th>
+                                <th>属性</th>
+                                <th>方位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>乾 ☰</td>
+                                <td>天</td>
+                                <td>健</td>
+                                <td>西北</td>
+                            </tr>
+                            <tr>
+                                <td>兑 ☱</td>
+                                <td>泽</td>
+                                <td>悦</td>
+                                <td>西</td>
+                            </tr>
+                            <tr>
+                                <td>离 ☲</td>
+                                <td>火</td>
+                                <td>丽</td>
+                                <td>南</td>
+                            </tr>
+                            <tr>
+                                <td>震 ☳</td>
+                                <td>雷</td>
+                                <td>动</td>
+                                <td>东</td>
+                            </tr>
+                            <tr>
+                                <td>巽 ☴</td>
+                                <td>风</td>
+                                <td>入</td>
+                                <td>东南</td>
+                            </tr>
+                            <tr>
+                                <td>坎 ☵</td>
+                                <td>水</td>
+                                <td>陷</td>
+                                <td>北</td>
+                            </tr>
+                            <tr>
+                                <td>艮 ☶</td>
+                                <td>山</td>
+                                <td>止</td>
+                                <td>东北</td>
+                            </tr>
+                            <tr>
+                                <td>坤 ☷</td>
+                                <td>地</td>
+                                <td>顺</td>
+                                <td>西南</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    </div>
+    
+    <div class="footer">
+        <p>太极八卦图 | 中华传统哲学符号 | 本页面仅用于文化展示与学习</p>
+        <p>© 2023 太极八卦文化展示 | 使用HTML、CSS和JavaScript实现</p>
+    </div>
 
     <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
+        // 太极图控制
+        const taiji = document.getElementById('taiji');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const randomBtn = document.getElementById('randomBtn');
+        const trigrams = document.querySelectorAll('.trigram');
+        const infoPanel = document.getElementById('infoPanel');
+        
+        let isRotating = true;
+        let rotationSpeed = 20;
+        
+        // 八卦详细信息
+        const trigramInfo = {
+            '乾': {
+                name: '乾 Qián',
+                symbol: '☰',
+                nature: '天',
+                attribute: '健',
+                direction: '西北',
+                element: '金',
+                family: '父',
+                description: '乾卦象征天，具有刚健、创造、领导的特质。代表宇宙的创始力量，是纯阳之卦。'
+            },
+            '兑': {
+                name: '兑 Duì',
+                symbol: '☱',
+                nature: '泽',
+                attribute: '悦',
+                direction: '西',
+                element: '金',
+                family: '少女',
+                description: '兑卦象征泽，具有喜悦、沟通、温和的特质。代表人际交往与欢乐。'
+            },
+            '离': {
+                name: '离 Lí',
+                symbol: '☲',
+                nature: '火',
+                attribute: '丽',
+                direction: '南',
+                element: '火',
+                family: '中女',
+                description: '离卦象征火，具有光明、美丽、依附的特质。代表文明与智慧。'
+            },
+            '震': {
+                name: '震 Zhèn',
+                symbol: '☳',
+                nature: '雷',
+                attribute: '动',
+                direction: '东',
+                element: '木',
+                family: '长男',
+                description: '震卦象征雷，具有震动、激发、行动的特质。代表变革与新生。'
+            },
+            '巽': {
+                name: '巽 Xùn',
+                symbol: '☴',
+                nature: '风',
+                attribute: '入',
+                direction: '东南',
+                element: '木',
+                family: '长女',
+                description: '巽卦象征风，具有渗透、顺从、灵活的特质。代表传播与适应。'
+            },
+            '坎': {
+                name: '坎 Kǎn',
+                symbol: '☵',
+                nature: '水',
+                attribute: '陷',
+                direction: '北',
+                element: '水',
+                family: '中男',
+                description: '坎卦象征水，具有险陷、深沉、智慧的特质。代表危险与挑战。'
+            },
+            '艮': {
+                name: '艮 Gèn',
+                symbol: '☶',
+                nature: '山',
+                attribute: '止',
+                direction: '东北',
+                element: '土',
+                family: '少男',
+                description: '艮卦象征山，具有静止、稳重、阻碍的特质。代表停止与沉思。'
+            },
+            '坤': {
+                name: '坤 Kūn',
+                symbol: '☷',
+                nature: '地',
+                attribute: '顺',
+                direction: '西南',
+                element: '土',
+                family: '母',
+                description: '坤卦象征地，具有柔顺、包容、承载的特质。代表接纳与滋养。'
+            }
+        };
+        
+        // 暂停/继续旋转
+        pauseBtn.addEventListener('click', function() {
+            if (isRotating) {
+                taiji.style.animationPlayState = 'paused';
+                pauseBtn.innerHTML = '<i class="fas fa-play"></i> 继续旋转';
+                pauseBtn.style.background = 'rgba(0, 150, 50, 0.7)';
+            } else {
+                taiji.style.animationPlayState = 'running';
+                pauseBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停旋转';
+                pauseBtn.style.background = '';
+            }
+            isRotating = !isRotating;
         });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
+        
+        // 重置旋转
+        resetBtn.addEventListener('click', function() {
+            taiji.style.animation = 'none';
+            setTimeout(() => {
+                taiji.style.animation = `rotate ${rotationSpeed}s linear infinite`;
+                if (!isRotating) {
+                    taiji.style.animationPlayState = 'paused';
+                }
+            }, 10);
             
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+            // 重置信息面板
+            infoPanel.innerHTML = `
+                <h2 class="info-title"><i class="fas fa-info-circle"></i> 太极八卦简介</h2>
+                <div class="info-content">
+                    <p>太极八卦图是中国古代哲学的重要象征，体现了阴阳相生、万物变化的宇宙观。</p>
+                    <p><span class="symbol">太极</span>代表宇宙的原始状态，阴阳相互依存、相互转化。<span class="symbol">八卦</span>由阴阳两种符号组成，每卦三爻，共八种组合，代表天地间八种基本元素与现象。</p>
+                    <p>点击周围的卦象可以查看详细信息。</p>
                     
-                    document.querySelector('nav ul').classList.remove('active');
-                }
+                    <table class="bagua-table">
+                        <thead>
+                            <tr>
+                                <th>卦名</th>
+                                <th>自然象征</th>
+                                <th>属性</th>
+                                <th>方位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>乾 ☰</td>
+                                <td>天</td>
+                                <td>健</td>
+                                <td>西北</td>
+                            </tr>
+                            <tr>
+                                <td>兑 ☱</td>
+                                <td>泽</td>
+                                <td>悦</td>
+                                <td>西</td>
+                            </tr>
+                            <tr>
+                                <td>离 ☲</td>
+                                <td>火</td>
+                                <td>丽</td>
+                                <td>南</td>
+                            </tr>
+                            <tr>
+                                <td>震 ☳</td>
+                                <td>雷</td>
+                                <td>动</td>
+                                <td>东</td>
+                            </tr>
+                            <tr>
+                                <td>巽 ☴</td>
+                                <td>风</td>
+                                <td>入</td>
+                                <td>东南</td>
+                            </tr>
+                            <tr>
+                                <td>坎 ☵</td>
+                                <td>水</td>
+                                <td>陷</td>
+                                <td>北</td>
+                            </tr>
+                            <tr>
+                                <td>艮 ☶</td>
+                                <td>山</td>
+                                <td>止</td>
+                                <td>东北</td>
+                            </tr>
+                            <tr>
+                                <td>坤 ☷</td>
+                                <td>地</td>
+                                <td>顺</td>
+                                <td>西南</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            // 移除所有卦象的激活状态
+            trigrams.forEach(trigram => {
+                trigram.classList.remove('active');
             });
+        });
+        
+        // 随机卦象
+        randomBtn.addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * trigrams.length);
+            const randomTrigram = trigrams[randomIndex];
+            const trigramName = randomTrigram.getAttribute('data-trigram');
+            
+            // 触发点击事件
+            randomTrigram.click();
+            
+            // 添加视觉效果
+            randomBtn.style.background = 'rgba(150, 0, 200, 0.7)';
+            setTimeout(() => {
+                randomBtn.style.background = '';
+            }, 300);
+        });
+        
+        // 卦象点击事件
+        trigrams.forEach(trigram => {
+            trigram.addEventListener('click', function() {
+                const trigramName = this.getAttribute('data-trigram');
+                const info = trigramInfo[trigramName];
+                
+                // 更新信息面板
+                infoPanel.innerHTML = `
+                    <h2 class="info-title"><i class="fas fa-star"></i> ${info.name}卦</h2>
+                    <div class="info-content">
+                        <p><span class="symbol">卦象：</span>${info.symbol}（${trigramName}）</p>
+                        <p><span class="symbol">自然象征：</span>${info.nature}</p>
+                        <p><span class="symbol">基本属性：</span>${info.attribute}</p>
+                        <p><span class="symbol">方位：</span>${info.direction}</p>
+                        <p><span class="symbol">五行：</span>${info.element}</p>
+                        <p><span class="symbol">人伦：</span>${info.family}</p>
+                        <p><span class="symbol">释义：</span>${info.description}</p>
+                        
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(0, 40, 85, 0.3); border-radius: 10px; border-left: 4px solid #00c8ff;">
+                            <p><i class="fas fa-lightbulb"></i> <strong>文化意义：</strong>在《易经》中，${trigramName}卦代表着${info.nature}的特性，提示人们在面对相关情境时，应采取${info.attribute}的态度。</p>
+                        </div>
+                    </div>
+                `;
+                
+                // 移除所有激活状态，添加当前激活状态
+                trigrams.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 太极图短暂加速效果
+                taiji.style.animationDuration = '5s';
+                setTimeout(() => {
+                    taiji.style.animationDuration = `${rotationSpeed}s`;
+                }, 1000);
+            });
+        });
+        
+        // 初始随机选择一个卦象
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * trigrams.length);
+                trigrams[randomIndex].click();
+            }, 1000);
         });
     </script>
 </body>
-
 </html>
