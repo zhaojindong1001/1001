@@ -3,49 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>太极 - 阴阳和谐</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&display=swap">
+    <title>太极八卦图</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
         }
         
         body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: #f8f8f8;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e6e6e6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background-image: radial-gradient(#e0e0e0 1px, transparent 1px);
-            background-size: 20px 20px;
+            padding: 20px;
         }
         
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        header {
+        .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             width: 100%;
+            max-width: 1000px;
         }
         
         h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #222;
+            font-size: 2.8rem;
+            color: #f8f8f8;
             margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
             position: relative;
             display: inline-block;
         }
@@ -53,389 +42,678 @@
         h1:after {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #000 50%, #fff 50%);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00c8ff, transparent);
+            bottom: -5px;
+            left: 0;
         }
         
         .subtitle {
             font-size: 1.2rem;
-            color: #666;
-            font-weight: 300;
-            margin-top: 20px;
+            color: #aaa;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
         
-        .content-wrapper {
+        .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 60px;
-            margin-bottom: 40px;
+            gap: 40px;
             width: 100%;
+            max-width: 1200px;
         }
         
-        .taiji-container {
+        .taiji-area {
             flex: 1;
             min-width: 300px;
             max-width: 500px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
         
-        .taiji {
+        .taiji-container {
             width: 300px;
             height: 300px;
             position: relative;
+            margin: 20px 0;
+        }
+        
+        .taiji {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            background: linear-gradient(to right, #000 50%, #fff 50%);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: transform 0.8s ease;
+            position: relative;
+            background: linear-gradient(to right, #ffffff 0%, #ffffff 50%, #000000 50%, #000000 100%);
+            animation: rotate 20s linear infinite;
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.3);
             cursor: pointer;
+            transition: transform 0.3s;
         }
         
         .taiji:hover {
-            transform: scale(1.05);
+            animation-play-state: paused;
+            transform: scale(1.02);
         }
         
         .taiji:before, .taiji:after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            top: 75px;
+            width: 50px;
+            height: 50px;
+            border: 35px solid;
+            top: 50%;
+            transform: translateY(-50%);
         }
         
         .taiji:before {
             background: #000;
-            left: 75px;
+            border-color: #000;
+            left: 25%;
         }
         
         .taiji:after {
             background: #fff;
-            right: 75px;
+            border-color: #fff;
+            right: 25%;
         }
         
-        .taiji .inner-circle-white, .taiji .inner-circle-black {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .taiji .inner-circle-white {
-            background: #fff;
-            top: 130px;
-            left: 130px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-        
-        .taiji .inner-circle-black {
-            background: #000;
-            top: 130px;
-            right: 130px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-        }
-        
-        .taiji-spin {
-            animation: spin 20s linear infinite;
-        }
-        
-        @keyframes spin {
+        @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
         
         .controls {
-            margin-top: 30px;
+            margin-top: 20px;
             display: flex;
             gap: 15px;
         }
         
-        button {
+        .btn {
             padding: 10px 20px;
-            background-color: #333;
-            color: white;
-            border: none;
+            background: rgba(0, 40, 85, 0.7);
+            color: #e6e6e6;
+            border: 1px solid #00c8ff;
             border-radius: 30px;
-            font-family: 'Noto Sans SC', sans-serif;
-            font-weight: 400;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
         }
         
-        button:hover {
-            background-color: #555;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        .btn:hover {
+            background: rgba(0, 100, 200, 0.8);
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.5);
         }
         
-        .philosophy {
+        .bagua-area {
             flex: 1;
             min-width: 300px;
             max-width: 600px;
-            padding: 30px;
-            background-color: #fff;
+        }
+        
+        .bagua-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+        }
+        
+        .bagua-circle {
+            position: absolute;
+            width: 360px;
+            height: 360px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px dashed rgba(0, 200, 255, 0.5);
+        }
+        
+        .trigram {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 20, 40, 0.8);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            color: #f8f8f8;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 200, 255, 0.5);
+            z-index: 2;
+        }
+        
+        .trigram:hover {
+            transform: scale(1.1);
+            background: rgba(0, 100, 200, 0.9);
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.7);
+            z-index: 10;
+        }
+        
+        .trigram-name {
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .trigram-lines {
+            font-size: 1.5rem;
+            letter-spacing: -5px;
+        }
+        
+        .info-panel {
+            background: rgba(10, 25, 47, 0.9);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 1000px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s;
         }
         
-        .philosophy h2 {
-            font-size: 2rem;
-            color: #222;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eee;
+        .info-title {
+            color: #00c8ff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .philosophy p {
-            margin-bottom: 20px;
-            text-align: justify;
+        .info-content {
+            line-height: 1.7;
             font-size: 1.1rem;
         }
         
-        .yin-yang-concept {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .yin, .yang {
-            padding: 20px;
-            border-radius: 10px;
-            width: 45%;
-        }
-        
-        .yin {
-            background-color: #000;
-            color: #fff;
-        }
-        
-        .yang {
-            background-color: #fff;
-            color: #000;
-            border: 2px solid #eee;
-        }
-        
-        .yin h3, .yang h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .principles {
-            margin-top: 40px;
-        }
-        
-        .principles h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #222;
-        }
-        
-        .principles ul {
-            list-style-type: none;
-        }
-        
-        .principles li {
-            padding: 10px 0;
-            border-bottom: 1px dashed #ddd;
-            display: flex;
-            align-items: center;
-        }
-        
-        .principles li:before {
-            content: "☯";
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            color: #666;
+        .bagua-table {
             width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        
+        .bagua-table th {
+            background: rgba(0, 100, 200, 0.3);
+            padding: 12px;
+            text-align: left;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+        }
+        
+        .bagua-table td {
+            padding: 12px;
+            border: 1px solid rgba(0, 200, 255, 0.2);
+        }
+        
+        .bagua-table tr:nth-child(even) {
+            background: rgba(0, 40, 85, 0.2);
+        }
+        
+        .bagua-table tr:hover {
+            background: rgba(0, 100, 200, 0.2);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #888;
             font-size: 0.9rem;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        .symbol {
+            color: #00c8ff;
+            font-weight: bold;
         }
         
         @media (max-width: 768px) {
-            .content-wrapper {
+            .container {
                 flex-direction: column;
                 align-items: center;
-                gap: 40px;
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
-            .taiji {
+            .taiji-container {
                 width: 250px;
                 height: 250px;
             }
             
-            .taiji:before, .taiji:after {
-                width: 125px;
-                height: 125px;
-                top: 62.5px;
+            .bagua-container {
+                height: 350px;
             }
             
-            .taiji:before {
-                left: 62.5px;
+            .bagua-circle {
+                width: 300px;
+                height: 300px;
             }
-            
-            .taiji:after {
-                right: 62.5px;
-            }
-            
-            .taiji .inner-circle-white, .taiji .inner-circle-black {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .taiji .inner-circle-white {
-                top: 107.5px;
-                left: 107.5px;
-            }
-            
-            .taiji .inner-circle-black {
-                top: 107.5px;
-                right: 107.5px;
-            }
+        }
+        
+        /* 八卦位置计算 */
+        .trigram-1 { top: 0%; left: 50%; transform: translate(-50%, -50%); }
+        .trigram-2 { top: 15%; left: 85%; transform: translate(-50%, -50%); }
+        .trigram-3 { top: 50%; left: 100%; transform: translate(-50%, -50%); }
+        .trigram-4 { top: 85%; left: 85%; transform: translate(-50%, -50%); }
+        .trigram-5 { top: 100%; left: 50%; transform: translate(-50%, -50%); }
+        .trigram-6 { top: 85%; left: 15%; transform: translate(-50%, -50%); }
+        .trigram-7 { top: 50%; left: 0%; transform: translate(-50%, -50%); }
+        .trigram-8 { top: 15%; left: 15%; transform: translate(-50%, -50%); }
+        
+        .active {
+            background: rgba(0, 150, 255, 0.9) !important;
+            box-shadow: 0 0 25px rgba(0, 200, 255, 0.9) !important;
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1><i class="fas fa-yin-yang"></i> 太极八卦图</h1>
+        <p class="subtitle">太极生两仪，两仪生四象，四象生八卦。八卦代表天地间八种基本元素与现象，是中华文化的重要哲学概念。</p>
+    </div>
+    
     <div class="container">
-        <header>
-            <h1>太 极</h1>
-            <p class="subtitle">阴阳相济，万物化生</p>
-        </header>
-        
-        <div class="content-wrapper">
+        <div class="taiji-area">
             <div class="taiji-container">
-                <div class="taiji" id="taiji">
-                    <div class="inner-circle-white"></div>
-                    <div class="inner-circle-black"></div>
-                </div>
+                <div class="taiji" id="taiji"></div>
+                <div class="bagua-circle"></div>
                 
-                <div class="controls">
-                    <button id="spinBtn">旋转太极</button>
-                    <button id="stopBtn">停止旋转</button>
-                    <button id="reverseBtn">反向旋转</button>
+                <!-- 八卦符号 -->
+                <div class="trigram trigram-1" data-trigram="乾">
+                    <div class="trigram-lines">☰</div>
+                    <div class="trigram-name">乾 Qián</div>
+                </div>
+                <div class="trigram trigram-2" data-trigram="兑">
+                    <div class="trigram-lines">☱</div>
+                    <div class="trigram-name">兑 Duì</div>
+                </div>
+                <div class="trigram trigram-3" data-trigram="离">
+                    <div class="trigram-lines">☲</div>
+                    <div class="trigram-name">离 Lí</div>
+                </div>
+                <div class="trigram trigram-4" data-trigram="震">
+                    <div class="trigram-lines">☳</div>
+                    <div class="trigram-name">震 Zhèn</div>
+                </div>
+                <div class="trigram trigram-5" data-trigram="巽">
+                    <div class="trigram-lines">☴</div>
+                    <div class="trigram-name">巽 Xùn</div>
+                </div>
+                <div class="trigram trigram-6" data-trigram="坎">
+                    <div class="trigram-lines">☵</div>
+                    <div class="trigram-name">坎 Kǎn</div>
+                </div>
+                <div class="trigram trigram-7" data-trigram="艮">
+                    <div class="trigram-lines">☶</div>
+                    <div class="trigram-name">艮 Gèn</div>
+                </div>
+                <div class="trigram trigram-8" data-trigram="坤">
+                    <div class="trigram-lines">☷</div>
+                    <div class="trigram-name">坤 Kūn</div>
                 </div>
             </div>
             
-            <div class="philosophy">
-                <h2>太极哲学</h2>
-                <p>太极是中国古代哲学思想的核心概念之一，代表宇宙万物的本源和根本规律。太极图以黑白两色、阴阳双鱼相互环抱的图形，生动诠释了阴阳对立统一、相互转化、和谐共生的深刻哲理。</p>
-                
-                <div class="yin-yang-concept">
-                    <div class="yin">
-                        <h3>阴</h3>
-                        <p>柔、暗、静、冷、内敛、被动、月亮、女性</p>
-                    </div>
-                    <div class="yang">
-                        <h3>阳</h3>
-                        <p>刚、明、动、热、外放、主动、太阳、男性</p>
-                    </div>
-                </div>
-                
-                <p>阴阳并非绝对对立，而是相互依存、互为根本。阴中有阳，阳中有阴，两者在不断运动和转化中达到动态平衡，从而推动事物的变化与发展。</p>
-                
-                <div class="principles">
-                    <h3>太极核心原则</h3>
-                    <ul>
-                        <li>阴阳相互依存，对立统一</li>
-                        <li>物极必反，循环往复</li>
-                        <li>动中有静，静中有动</li>
-                        <li>平衡和谐，中道而行</li>
-                        <li>变化无穷，生生不息</li>
-                    </ul>
-                </div>
+            <div class="controls">
+                <button class="btn" id="pauseBtn">
+                    <i class="fas fa-pause"></i> 暂停旋转
+                </button>
+                <button class="btn" id="resetBtn">
+                    <i class="fas fa-redo"></i> 重置
+                </button>
+                <button class="btn" id="randomBtn">
+                    <i class="fas fa-random"></i> 随机卦象
+                </button>
             </div>
         </div>
         
-        <footer>
-            <p>太极图 · 阴阳哲学 · 传统智慧与现代生活的融合</p>
-            <p>© 2023 太极网页展示 | 设计理念：阴阳和谐，平衡共生</p>
-        </footer>
+        <div class="bagua-area">
+            <div class="info-panel" id="infoPanel">
+                <h2 class="info-title"><i class="fas fa-info-circle"></i> 太极八卦简介</h2>
+                <div class="info-content">
+                    <p>太极八卦图是中国古代哲学的重要象征，体现了阴阳相生、万物变化的宇宙观。</p>
+                    <p><span class="symbol">太极</span>代表宇宙的原始状态，阴阳相互依存、相互转化。<span class="symbol">八卦</span>由阴阳两种符号组成，每卦三爻，共八种组合，代表天地间八种基本元素与现象。</p>
+                    <p>点击周围的卦象可以查看详细信息。</p>
+                    
+                    <table class="bagua-table">
+                        <thead>
+                            <tr>
+                                <th>卦名</th>
+                                <th>自然象征</th>
+                                <th>属性</th>
+                                <th>方位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>乾 ☰</td>
+                                <td>天</td>
+                                <td>健</td>
+                                <td>西北</td>
+                            </tr>
+                            <tr>
+                                <td>兑 ☱</td>
+                                <td>泽</td>
+                                <td>悦</td>
+                                <td>西</td>
+                            </tr>
+                            <tr>
+                                <td>离 ☲</td>
+                                <td>火</td>
+                                <td>丽</td>
+                                <td>南</td>
+                            </tr>
+                            <tr>
+                                <td>震 ☳</td>
+                                <td>雷</td>
+                                <td>动</td>
+                                <td>东</td>
+                            </tr>
+                            <tr>
+                                <td>巽 ☴</td>
+                                <td>风</td>
+                                <td>入</td>
+                                <td>东南</td>
+                            </tr>
+                            <tr>
+                                <td>坎 ☵</td>
+                                <td>水</td>
+                                <td>陷</td>
+                                <td>北</td>
+                            </tr>
+                            <tr>
+                                <td>艮 ☶</td>
+                                <td>山</td>
+                                <td>止</td>
+                                <td>东北</td>
+                            </tr>
+                            <tr>
+                                <td>坤 ☷</td>
+                                <td>地</td>
+                                <td>顺</td>
+                                <td>西南</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     
+    <div class="footer">
+        <p>太极八卦图 | 中华传统哲学符号 | 本页面仅用于文化展示与学习</p>
+        <p>© 2023 太极八卦文化展示 | 使用HTML、CSS和JavaScript实现</p>
+    </div>
+
     <script>
+        // 太极图控制
         const taiji = document.getElementById('taiji');
-        const spinBtn = document.getElementById('spinBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const reverseBtn = document.getElementById('reverseBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const randomBtn = document.getElementById('randomBtn');
+        const trigrams = document.querySelectorAll('.trigram');
+        const infoPanel = document.getElementById('infoPanel');
         
-        let spinDirection = 'normal';
-        let isSpinning = false;
+        let isRotating = true;
+        let rotationSpeed = 20;
         
-        spinBtn.addEventListener('click', function() {
-            if (isSpinning) {
-                taiji.classList.remove('taiji-spin');
-                // 短暂延迟后重新添加以重置动画
-                setTimeout(() => {
-                    taiji.style.animationDirection = spinDirection;
-                    taiji.classList.add('taiji-spin');
-                }, 10);
+        // 八卦详细信息
+        const trigramInfo = {
+            '乾': {
+                name: '乾 Qián',
+                symbol: '☰',
+                nature: '天',
+                attribute: '健',
+                direction: '西北',
+                element: '金',
+                family: '父',
+                description: '乾卦象征天，具有刚健、创造、领导的特质。代表宇宙的创始力量，是纯阳之卦。'
+            },
+            '兑': {
+                name: '兑 Duì',
+                symbol: '☱',
+                nature: '泽',
+                attribute: '悦',
+                direction: '西',
+                element: '金',
+                family: '少女',
+                description: '兑卦象征泽，具有喜悦、沟通、温和的特质。代表人际交往与欢乐。'
+            },
+            '离': {
+                name: '离 Lí',
+                symbol: '☲',
+                nature: '火',
+                attribute: '丽',
+                direction: '南',
+                element: '火',
+                family: '中女',
+                description: '离卦象征火，具有光明、美丽、依附的特质。代表文明与智慧。'
+            },
+            '震': {
+                name: '震 Zhèn',
+                symbol: '☳',
+                nature: '雷',
+                attribute: '动',
+                direction: '东',
+                element: '木',
+                family: '长男',
+                description: '震卦象征雷，具有震动、激发、行动的特质。代表变革与新生。'
+            },
+            '巽': {
+                name: '巽 Xùn',
+                symbol: '☴',
+                nature: '风',
+                attribute: '入',
+                direction: '东南',
+                element: '木',
+                family: '长女',
+                description: '巽卦象征风，具有渗透、顺从、灵活的特质。代表传播与适应。'
+            },
+            '坎': {
+                name: '坎 Kǎn',
+                symbol: '☵',
+                nature: '水',
+                attribute: '陷',
+                direction: '北',
+                element: '水',
+                family: '中男',
+                description: '坎卦象征水，具有险陷、深沉、智慧的特质。代表危险与挑战。'
+            },
+            '艮': {
+                name: '艮 Gèn',
+                symbol: '☶',
+                nature: '山',
+                attribute: '止',
+                direction: '东北',
+                element: '土',
+                family: '少男',
+                description: '艮卦象征山，具有静止、稳重、阻碍的特质。代表停止与沉思。'
+            },
+            '坤': {
+                name: '坤 Kūn',
+                symbol: '☷',
+                nature: '地',
+                attribute: '顺',
+                direction: '西南',
+                element: '土',
+                family: '母',
+                description: '坤卦象征地，具有柔顺、包容、承载的特质。代表接纳与滋养。'
+            }
+        };
+        
+        // 暂停/继续旋转
+        pauseBtn.addEventListener('click', function() {
+            if (isRotating) {
+                taiji.style.animationPlayState = 'paused';
+                pauseBtn.innerHTML = '<i class="fas fa-play"></i> 继续旋转';
+                pauseBtn.style.background = 'rgba(0, 150, 50, 0.7)';
             } else {
-                taiji.style.animationDirection = spinDirection;
-                taiji.classList.add('taiji-spin');
-                isSpinning = true;
+                taiji.style.animationPlayState = 'running';
+                pauseBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停旋转';
+                pauseBtn.style.background = '';
             }
+            isRotating = !isRotating;
         });
         
-        stopBtn.addEventListener('click', function() {
-            taiji.classList.remove('taiji-spin');
-            isSpinning = false;
-        });
-        
-        reverseBtn.addEventListener('click', function() {
-            spinDirection = spinDirection === 'normal' ? 'reverse' : 'normal';
-            taiji.style.animationDirection = spinDirection;
+        // 重置旋转
+        resetBtn.addEventListener('click', function() {
+            taiji.style.animation = 'none';
+            setTimeout(() => {
+                taiji.style.animation = `rotate ${rotationSpeed}s linear infinite`;
+                if (!isRotating) {
+                    taiji.style.animationPlayState = 'paused';
+                }
+            }, 10);
             
-            if (isSpinning) {
-                taiji.classList.remove('taiji-spin');
+            // 重置信息面板
+            infoPanel.innerHTML = `
+                <h2 class="info-title"><i class="fas fa-info-circle"></i> 太极八卦简介</h2>
+                <div class="info-content">
+                    <p>太极八卦图是中国古代哲学的重要象征，体现了阴阳相生、万物变化的宇宙观。</p>
+                    <p><span class="symbol">太极</span>代表宇宙的原始状态，阴阳相互依存、相互转化。<span class="symbol">八卦</span>由阴阳两种符号组成，每卦三爻，共八种组合，代表天地间八种基本元素与现象。</p>
+                    <p>点击周围的卦象可以查看详细信息。</p>
+                    
+                    <table class="bagua-table">
+                        <thead>
+                            <tr>
+                                <th>卦名</th>
+                                <th>自然象征</th>
+                                <th>属性</th>
+                                <th>方位</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>乾 ☰</td>
+                                <td>天</td>
+                                <td>健</td>
+                                <td>西北</td>
+                            </tr>
+                            <tr>
+                                <td>兑 ☱</td>
+                                <td>泽</td>
+                                <td>悦</td>
+                                <td>西</td>
+                            </tr>
+                            <tr>
+                                <td>离 ☲</td>
+                                <td>火</td>
+                                <td>丽</td>
+                                <td>南</td>
+                            </tr>
+                            <tr>
+                                <td>震 ☳</td>
+                                <td>雷</td>
+                                <td>动</td>
+                                <td>东</td>
+                            </tr>
+                            <tr>
+                                <td>巽 ☴</td>
+                                <td>风</td>
+                                <td>入</td>
+                                <td>东南</td>
+                            </tr>
+                            <tr>
+                                <td>坎 ☵</td>
+                                <td>水</td>
+                                <td>陷</td>
+                                <td>北</td>
+                            </tr>
+                            <tr>
+                                <td>艮 ☶</td>
+                                <td>山</td>
+                                <td>止</td>
+                                <td>东北</td>
+                            </tr>
+                            <tr>
+                                <td>坤 ☷</td>
+                                <td>地</td>
+                                <td>顺</td>
+                                <td>西南</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            `;
+            
+            // 移除所有卦象的激活状态
+            trigrams.forEach(trigram => {
+                trigram.classList.remove('active');
+            });
+        });
+        
+        // 随机卦象
+        randomBtn.addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * trigrams.length);
+            const randomTrigram = trigrams[randomIndex];
+            const trigramName = randomTrigram.getAttribute('data-trigram');
+            
+            // 触发点击事件
+            randomTrigram.click();
+            
+            // 添加视觉效果
+            randomBtn.style.background = 'rgba(150, 0, 200, 0.7)';
+            setTimeout(() => {
+                randomBtn.style.background = '';
+            }, 300);
+        });
+        
+        // 卦象点击事件
+        trigrams.forEach(trigram => {
+            trigram.addEventListener('click', function() {
+                const trigramName = this.getAttribute('data-trigram');
+                const info = trigramInfo[trigramName];
+                
+                // 更新信息面板
+                infoPanel.innerHTML = `
+                    <h2 class="info-title"><i class="fas fa-star"></i> ${info.name}卦</h2>
+                    <div class="info-content">
+                        <p><span class="symbol">卦象：</span>${info.symbol}（${trigramName}）</p>
+                        <p><span class="symbol">自然象征：</span>${info.nature}</p>
+                        <p><span class="symbol">基本属性：</span>${info.attribute}</p>
+                        <p><span class="symbol">方位：</span>${info.direction}</p>
+                        <p><span class="symbol">五行：</span>${info.element}</p>
+                        <p><span class="symbol">人伦：</span>${info.family}</p>
+                        <p><span class="symbol">释义：</span>${info.description}</p>
+                        
+                        <div style="margin-top: 20px; padding: 15px; background: rgba(0, 40, 85, 0.3); border-radius: 10px; border-left: 4px solid #00c8ff;">
+                            <p><i class="fas fa-lightbulb"></i> <strong>文化意义：</strong>在《易经》中，${trigramName}卦代表着${info.nature}的特性，提示人们在面对相关情境时，应采取${info.attribute}的态度。</p>
+                        </div>
+                    </div>
+                `;
+                
+                // 移除所有激活状态，添加当前激活状态
+                trigrams.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 太极图短暂加速效果
+                taiji.style.animationDuration = '5s';
                 setTimeout(() => {
-                    taiji.classList.add('taiji-spin');
-                }, 10);
-            }
+                    taiji.style.animationDuration = `${rotationSpeed}s`;
+                }, 1000);
+            });
         });
         
-        // 点击太极图可以切换旋转状态
-        taiji.addEventListener('click', function() {
-            if (isSpinning) {
-                taiji.classList.remove('taiji-spin');
-                isSpinning = false;
-            } else {
-                taiji.style.animationDirection = spinDirection;
-                taiji.classList.add('taiji-spin');
-                isSpinning = true;
-            }
-        });
-        
-        // 添加一些交互效果
-        const principlesItems = document.querySelectorAll('.principles li');
-        principlesItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateX(10px)';
-                this.style.transition = 'transform 0.3s ease';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateX(0)';
-            });
+        // 初始随机选择一个卦象
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * trigrams.length);
+                trigrams[randomIndex].click();
+            }, 1000);
         });
     </script>
 </body>
